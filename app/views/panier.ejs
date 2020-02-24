@@ -1,0 +1,93 @@
+<%- include('partials/header') %>
+
+  <!-- Page Content -->
+  <div class="container container-main">
+
+      <div class="row">
+        <div class="col">
+          <h3 class="text-center">Votre Panier</h3>
+
+          <table class="table">
+            <thead>
+              <th>Article</th>
+              <th>Quantité</th>
+              <th>Prix HT</th>
+            </thead>
+            <tbody>
+              <% for (const figurine of goodFigurines) { %>
+                <tr>
+                  <td>
+                    <img class="img-thumbnail img-cart-list" src="/images/<%= figurine.name.toLowerCase() %>.png" alt="">
+                    <div class="item-description">
+                        <h5 class="item-title"><%= figurine.name %></h5>
+                        <p class="item-prize">$<%= figurine.price %></p>
+                    </div>
+                  </td>
+
+                  <td>
+                    <strong><%= figurine.quantity %></strong>
+                    <a href="/cart/add/<%= figurine.id %>">+</a> / <a href="/cart/delete/<%= figurine.id %>">-</a>
+                  </td>
+                  <td>
+                    <p class="item-subtotal">$<%= figurine.price * figurine.quantity %></p>
+                  </td>
+                </tr>
+              <% } %>
+
+              <!-- Frais de port -->
+              <tr>
+                <td class="text-right" colspan="2">
+                  Frais de port
+                </td>
+                <td class="item-subtotal">
+                  $9.99
+                </td>
+              </tr>
+
+              <tfoot>
+                <tr>
+                  <td class="text-right" colspan="2">
+                    Total HT
+                  </td>
+                  <td class="item-subtotal">
+                    $<%= totalHT.toFixed(2) %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="text-right" colspan="2">
+                    TVA 20%
+                  </td>
+                  <td class="item-subtotal">
+                    $<%= tva.toFixed(2) %>
+                  </td>
+                </tr>
+
+                <tr class="row-total">
+                  <td class="text-right" colspan="2">
+                    Total TTC
+                  </td>
+                  <td class="item-total">
+                    $<%= totalTTC.toFixed(2) %>
+                  </td>
+                </tr>
+
+              </tfoot>
+
+            </tbody>
+
+          </table>
+
+          <div class="row">
+            <div class="col text-right">
+                <div class="btn btn-success">
+                  Passer Commande
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+<%- include('partials/footer') %>

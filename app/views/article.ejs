@@ -1,0 +1,60 @@
+<%- include('partials/header') %>
+
+  <!-- Page Content -->
+  <main class="container container-main">
+
+    <div class="row">
+
+        <%- include('partials/leftMenu') %>
+
+      <section class="col-lg-9">
+
+        <article itemscope itemtype="http://schema.org/Product" class="row">
+          <header class="col-lg-6">
+            <img itemprop="image" class="" src="/images/<%= figurine.name.toLowerCase() %>.png" alt="Illustration de la figurine <%= figurine.name %>">
+          </header>
+
+          <main class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                  <div class="card-title">
+                    <h2 itemprop="name" class="h3 d-inline-block"><%= figurine.name %></h2>
+                    <h3 itemprop="category" class="badge badge-pill badge-<%= figurine.category.toLowerCase() %>"><%= figurine.category %></h3>
+                  </div>
+                  <p itemprop="height" class="card-text">Taille réelle : <%= figurine.size %>cm</p>
+                  <p itemprop="description" class="card-text"><%= figurine.description %></p>
+                  <p class="card-text">
+                    Note moyenne : &#9733; &#9733; &#9733; &#9733; &#9734;
+                    <br>
+                    <a href="#" data-toggle="modal" data-target="#reviewsModal">Détails des avis</a>
+                  </p>
+                  <h4 class="h5" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                    <meta itemprop="price" content="<%= figurine.price %>" />
+                    <meta itemprop="priceCurrency" content="USD" />
+                    $<%= figurine.price %>
+                  </h4>
+                  <p class="card-text">
+                    <a href="/cart/add/<%= figurine.id %>" class="link-add-cart">+ Ajouter au panier</a>
+                  </p>
+              </div>
+            </div>
+          
+          </main>
+
+        </article>
+        <!-- /.row -->
+
+      </section>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </main>
+  <!-- /.container -->
+
+  <%- include('partials/reviewModal') %>
+
+<%- include('partials/footer') %>
+
+ 

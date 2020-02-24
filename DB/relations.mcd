@@ -1,0 +1,6 @@
+Figurine <-> reviews
+Type de relation : 1:N ("1 figurine a N reviews")
+
+=> on rajoute un champ "figurine_id" dans la table reviews. Ce champ sera une foreign key vers le champ id de la table Figurine.
+
+

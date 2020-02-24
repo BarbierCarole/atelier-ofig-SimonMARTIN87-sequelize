@@ -1,0 +1,59 @@
+<%- include ('partials/header') %>
+
+  <!-- Page Content -->
+  <%# ça, c'est le contenu principla de la page => c'est un main %>
+  <main class="container container-main">
+
+    <div class="row">
+
+      <%- include('partials/leftMenu') %>
+
+      <section class="col-lg-9">
+
+        <div class="row">
+
+        <% for (const figurine of figurines) {%>
+
+          <article itemscope itemtype="http://schema.org/Product" class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a itemprop="url" href="/article/<%= figurine.id %>">
+                <img itemprop="image" class="card-img-top" src="./images/<%= figurine.name.toLowerCase() %>.png" alt="Illustration de la figurine <%= figurine.name %>">
+                <%# Les catégories, c'est un mot important à mettre en valeur %>
+                <%# => hop, on en fait un h3. %>
+                <h3 itemprop="category" class="badge-category badge badge-pill badge-<%= figurine.category.toLowerCase() %>"><%= figurine.category %></h3>
+              </a>
+              <div class="card-body">
+              <%# Le titre le plus important après celui du site?? celui des figurines ! Pour éviter le changement de font, on utilise la classe h4 de bootstrap !%>
+                <h2 itemprop="name" class="h4 card-title">
+                  <a itemprop="url" href="/article/<%= figurine.id %>"><%= figurine.name %></a>
+                </h2>
+                <h4 class="h5" itemprop="offers" itemscope itemtype="http://schema.org/Offer" >
+                  <meta itemprop="price" content="<%= figurine.price %>" />
+                  <meta itemprop="priceCurrency" content="USD" />
+                  $<%= figurine.price %>
+                </h4>
+                <p itemprop="description" class="card-text"><%= figurine.description %></p>
+              </div>
+              <div class="card-footer">
+              <%# small, c'est pout les petits caractères en bas de page. ici on détourné son utilité (pas bien!), juste pour afficher un truc plus petit => on remplace par un span, avec une classe CSS appropriée %>
+                <span class="small text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                <a href="/cart/add/<%= figurine.id %>" class="link-add-cart">+ Ajouter au panier</a>
+              </div>
+            </div>
+          </article>
+
+        <% } %>
+
+        </div>
+        <!-- /.row -->
+
+      </section>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </main>
+  <!-- /.container -->
+
+<%- include('partials/footer') %>
